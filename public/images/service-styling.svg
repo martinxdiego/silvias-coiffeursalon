@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 700" role="img" aria-labelledby="title desc">
+  <title id="title">Styling Platzhalter</title>
+  <desc id="desc">Eleganter Platzhalter fuer Brushing und Styling.</desc>
+  <rect width="900" height="700" fill="#f8ead6"/>
+  <rect x="90" y="88" width="720" height="524" rx="44" fill="#fffaf3"/>
+  <path d="M254 502c45-160 112-240 201-240 90 0 157 80 201 240H254Z" fill="#6f4a38"/>
+  <path d="M302 268c32-88 92-136 180-144 95-8 162 37 203 136-132-50-260-47-383 8Z" fill="#2d211b"/>
+  <path d="M214 190c82 42 134 103 156 182M696 190c-82 42-134 103-156 182" fill="none" stroke="#b88945" stroke-width="22" stroke-linecap="round"/>
+  <rect x="192" y="526" width="516" height="34" rx="17" fill="#d9bf8c"/>
+</svg>

@@ -1,0 +1,64 @@
+@import "tailwindcss";
+
+@theme {
+  --color-cream: #fbf6ee;
+  --color-ivory: #fffaf3;
+  --color-cocoa: #2d211b;
+  --color-coffee: #5a4032;
+  --color-mocha: #7a5947;
+  --color-sand: #d9bf8c;
+  --color-gold: #b88945;
+  --color-clay: #9a6b58;
+  --color-rose: #c99383;
+  --color-sage: #87937a;
+  --color-linen: #eee1cf;
+  --font-sans: "Aptos", "Segoe UI", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Georgia", "Times New Roman", ui-serif, serif;
+}
+
+:root {
+  --background: #fbf6ee;
+  --foreground: #2d211b;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--background);
+}
+
+body {
+  margin: 0;
+  background:
+    linear-gradient(180deg, rgba(255, 250, 243, 0.86), rgba(251, 246, 238, 0.96)),
+    var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: rgba(184, 137, 69, 0.28);
+}
+
+button,
+a,
+input,
+textarea,
+select {
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}

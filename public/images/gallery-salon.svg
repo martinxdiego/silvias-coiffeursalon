@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1100" role="img" aria-labelledby="title desc">
+  <title id="title">Salon Stimmung Platzhalter</title>
+  <desc id="desc">Platzhalterbild fuer einen warmen Salonbereich.</desc>
+  <rect width="900" height="1100" fill="#eee1cf"/>
+  <rect x="110" y="116" width="680" height="590" rx="42" fill="#fffaf3"/>
+  <rect x="188" y="194" width="240" height="420" rx="120" fill="#d9bf8c" opacity="0.58"/>
+  <rect x="486" y="194" width="220" height="420" rx="34" fill="#3a2922"/>
+  <rect x="515" y="236" width="162" height="318" rx="82" fill="#f8ead6"/>
+  <rect x="162" y="760" width="246" height="156" rx="48" fill="#5a4032"/>
+  <rect x="492" y="760" width="246" height="156" rx="48" fill="#b88945"/>
+  <rect x="120" y="944" width="660" height="34" rx="17" fill="#fffaf3" opacity="0.7"/>
+</svg>

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1100" role="img" aria-labelledby="title desc">
+  <title id="title">Moderner Schnitt Platzhalter</title>
+  <desc id="desc">Platzhalterbild fuer einen modernen Haarschnitt.</desc>
+  <rect width="900" height="1100" fill="#fffaf3"/>
+  <rect x="100" y="120" width="700" height="860" rx="50" fill="#eee1cf"/>
+  <path d="M238 780c52-242 122-363 212-363s160 121 212 363H238Z" fill="#8b5e4a"/>
+  <path d="M286 402c30-126 96-192 198-198 103-6 173 62 210 204-137-64-273-66-408-6Z" fill="#2d211b"/>
+  <rect x="250" y="810" width="400" height="44" rx="22" fill="#d9bf8c"/>
+  <path d="M222 244l160 160M382 244 222 404" stroke="#b88945" stroke-width="20" stroke-linecap="round"/>
+</svg>

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1100" role="img" aria-labelledby="title desc">
+  <title id="title">Event Styling Platzhalter</title>
+  <desc id="desc">Platzhalterbild fuer elegantes Styling.</desc>
+  <rect width="900" height="1100" fill="#f8ead6"/>
+  <path d="M184 772c46-330 135-495 266-495s220 165 266 495H184Z" fill="#5a4032"/>
+  <path d="M291 311c51-116 131-169 240-159 108 10 181 78 220 203-161-81-314-96-460-44Z" fill="#2d211b"/>
+  <path d="M230 346c68 28 126 88 174 180M678 352c-78 34-138 95-180 184" fill="none" stroke="#d9bf8c" stroke-width="24" stroke-linecap="round" opacity="0.8"/>
+  <rect x="178" y="806" width="544" height="54" rx="27" fill="#fffaf3" opacity="0.64"/>
+  <rect x="252" y="886" width="396" height="38" rx="19" fill="#c99383" opacity="0.74"/>
+</svg>
