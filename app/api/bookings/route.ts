@@ -8,7 +8,7 @@ export async function POST(request: Request) {
   try {
     const payload = (await request.json()) as BookingRequest;
     const booking = createBooking(payload);
-    const cancellationHref = `${siteConfig.cancellationPath}?id=${booking.id}&token=${booking.cancellationToken}`;
+    const cancellationHref = `${siteConfig.cancellationPath}?id=${booking.bookingNumber}&token=${booking.cancellationToken}`;
     const response: BookingResponse = {
       booking,
       calendar: createBookingIcs(booking),

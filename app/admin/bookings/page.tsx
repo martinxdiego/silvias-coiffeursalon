@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { formatBookingDate } from "@/lib/availability";
 import { getAllBookings } from "@/lib/booking-store";
-import { getPaymentStatusLabel, paymentMethodLabels } from "@/lib/booking-types";
+import { bookingStatusLabels, getPaymentStatusLabel, paymentMethodLabels } from "@/lib/booking-types";
 
 export const dynamic = "force-dynamic";
 
@@ -12,6 +12,26 @@ export const metadata: Metadata = {
 };
 
 export default function AdminBookingsPage() {
+  if (process.env.NODE_ENV === "production") {
+    return (
+      <main className="bg-cream px-4 py-16 sm:px-6 lg:px-8">
+        <section className="mx-auto max-w-3xl rounded-[2rem] border border-cocoa/10 bg-ivory p-8 shadow-[0_22px_70px_rgba(45,33,27,0.1)]">
+          <p className="mb-3 text-xs font-semibold uppercase tracking-[0.24em] text-gold">
+            Admin deaktiviert
+          </p>
+          <h1 className="font-serif text-4xl leading-tight text-cocoa">
+            Diese Ansicht ist nur für die lokale Entwicklung gedacht.
+          </h1>
+          <p className="mt-4 leading-8 text-coffee">
+            TODO: Vor Produktion Authentifizierung, rollenbasierte Rechte und
+            eine echte Datenbank anbinden. Aus Datenschutzgründen werden auf der
+            Live-Website keine Prototyp-Buchungen angezeigt.
+          </p>
+        </section>
+      </main>
+    );
+  }
+
   const bookings = getAllBookings();
 
   return (
@@ -72,6 +92,7 @@ export default function AdminBookingsPage() {
                         <span className="block text-mocha">
                           {booking.startTime}-{booking.endTime}
                         </span>
+                        <span className="block text-xs text-mocha">{booking.bookingNumber}</span>
                       </td>
                       <td className="px-3 py-4 text-coffee">
                         {booking.customerFirstName} {booking.customerLastName}
@@ -92,13 +113,13 @@ export default function AdminBookingsPage() {
                       </td>
                       <td className="px-3 py-4">
                         <span className="rounded-full bg-sand/30 px-3 py-1 text-xs font-semibold text-cocoa">
-                          {booking.status}
+                          {bookingStatusLabels[booking.status]}
                         </span>
                       </td>
                       <td className="px-3 py-4">
                         <Link
                           className="inline-flex min-h-10 items-center justify-center rounded-full border border-cocoa/15 bg-white px-4 text-xs font-semibold text-cocoa"
-                          href={`/termin-stornieren?id=${booking.id}&token=${booking.cancellationToken}`}
+                          href={`/termin-stornieren?id=${booking.bookingNumber}&token=${booking.cancellationToken}`}
                         >
                           Stornieren
                         </Link>

@@ -1,9 +1,10 @@
 import { siteConfig } from "@/data/site";
-import { paymentMethodLabels, type StoredBooking } from "@/lib/booking-types";
+import { bookingStatusLabels, paymentMethodLabels, type StoredBooking } from "@/lib/booking-types";
 
 export function buildSalonBookingNotification(booking: StoredBooking) {
   return [
-    `Neue Buchung: ${booking.id}`,
+    `Neue Terminanfrage: ${booking.bookingNumber}`,
+    `Status: ${bookingStatusLabels[booking.status]}`,
     `Name: ${booking.customerFirstName} ${booking.customerLastName}`,
     `Telefon: ${booking.customerPhone}`,
     `E-Mail: ${booking.customerEmail}`,
@@ -20,20 +21,20 @@ export function buildSalonBookingNotification(booking: StoredBooking) {
 
 export function buildCustomerConfirmationNotification(booking: StoredBooking) {
   return [
-    `Buchungsbestätigung ${booking.id}`,
+    `Terminanfrage ${booking.bookingNumber}`,
     `Salon: ${siteConfig.name}`,
     `Adresse: ${siteConfig.addressLines.join(", ")}`,
     `Termin: ${booking.date}, ${booking.startTime}-${booking.endTime}`,
     `Leistung: ${booking.serviceName}`,
     `Preis: CHF ${booking.priceCHF}`,
     `Zahlung: ${paymentMethodLabels[booking.paymentMethod]}`,
-    `Stornieren: ${siteConfig.url}${siteConfig.cancellationPath}?id=${booking.id}&token=${booking.cancellationToken}`,
+    `Stornieren: ${siteConfig.url}${siteConfig.cancellationPath}?id=${booking.bookingNumber}&token=${booking.cancellationToken}`,
   ].join("\n");
 }
 
 export function buildSalonCancellationNotification(booking: StoredBooking) {
   return [
-    `Stornierung: ${booking.id}`,
+    `Stornierung: ${booking.bookingNumber}`,
     `Name: ${booking.customerFirstName} ${booking.customerLastName}`,
     `Termin: ${booking.date}, ${booking.startTime}-${booking.endTime}`,
     `Leistung: ${booking.serviceName}`,

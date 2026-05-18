@@ -101,7 +101,7 @@ export function CancellationForm({
         </p>
 
         <dl className="mt-8 grid gap-4 rounded-[1.75rem] bg-cream p-5 sm:grid-cols-2">
-          <SummaryRow label="Buchung" value={booking.id} />
+          <SummaryRow label="Buchungsnummer" value={booking.bookingNumber} />
           <SummaryRow label="Leistung" value={booking.serviceName} />
           <SummaryRow
             label="Termin"
@@ -116,7 +116,7 @@ export function CancellationForm({
             onClick={() =>
               response.cancellationCalendar
                 ? downloadIcs(
-                    `silvias-coiffeursalon-storno-${booking.id}.ics`,
+                    `silvias-coiffeursalon-storno-${booking.bookingNumber}.ics`,
                     response.cancellationCalendar,
                   )
                 : undefined
@@ -185,7 +185,7 @@ export function CancellationForm({
         <div className="mt-7 rounded-[1.75rem] border border-cocoa/10 bg-cream p-5">
           <h3 className="font-serif text-2xl text-cocoa">Diesen Termin stornieren?</h3>
           <dl className="mt-5 grid gap-4 sm:grid-cols-2">
-            <SummaryRow label="Buchung" value={previewBooking.id} />
+            <SummaryRow label="Buchungsnummer" value={previewBooking.bookingNumber} />
             <SummaryRow label="Leistung" value={previewBooking.serviceName} />
             <SummaryRow
               label="Termin"

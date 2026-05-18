@@ -4,6 +4,7 @@ import { getServiceById } from "@/data/services";
 import { addMinutesToTime, getTimeSlotsForDate } from "@/lib/availability";
 import { cancelSalonCalendarEvent, createSalonCalendarEvent } from "@/lib/calendar-sync";
 import {
+  bookingStatusLabels,
   getPaymentStatus,
   paymentMethodLabels,
   type BookingRequest,
@@ -31,6 +32,10 @@ function minutesFromTime(time: string) {
   return hours * 60 + minutes;
 }
 
+function isPlausiblePhone(phone: string) {
+  return /^[+0-9][0-9\s()./-]{6,}$/.test(phone.trim());
+}
+
 export function createBooking(payload: BookingRequest) {
   const service = getServiceById(payload.serviceId);
 
@@ -55,6 +60,10 @@ export function createBooking(payload: BookingRequest) {
     throw new Error("Bitte gib eine gültige E-Mail-Adresse ein.");
   }
 
+  if (!isPlausiblePhone(payload.customerPhone)) {
+    throw new Error("Bitte gib eine gültige Telefonnummer ein.");
+  }
+
   if (!payload.date || !payload.startTime) {
     throw new Error("Bitte wähle Datum und Uhrzeit aus.");
   }
@@ -74,7 +83,9 @@ export function createBooking(payload: BookingRequest) {
   const requestedStart = minutesFromTime(payload.startTime);
   const requestedEnd = requestedStart + service.durationMinutes;
   const hasOverlap = Array.from(bookings.values()).some((booking) => {
-    if (booking.status !== "confirmed" || booking.date !== payload.date) {
+    // TODO: Once a production database is connected, this overlap check must
+    // query persisted bookings and optionally Silvia's real calendar.
+    if (booking.status === "cancelled" || booking.date !== payload.date) {
       return false;
     }
 
@@ -87,10 +98,12 @@ export function createBooking(payload: BookingRequest) {
     throw new Error("Diese Zeit wurde gerade reserviert. Bitte wähle einen anderen Termin.");
   }
 
-  const id = `SC-${randomUUID().slice(0, 8).toUpperCase()}`;
+  const id = randomUUID();
+  const bookingNumber = `SC-${id.slice(0, 8).toUpperCase()}`;
   const cancellationToken = randomUUID();
   const booking: StoredBooking = {
     id,
+    bookingNumber,
     serviceId: service.id,
     serviceName: service.name,
     category: service.category,
@@ -106,7 +119,7 @@ export function createBooking(payload: BookingRequest) {
     customerNotes: payload.customerNotes?.trim() ?? "",
     paymentMethod: payload.paymentMethod,
     paymentStatus: getPaymentStatus(payload.paymentMethod),
-    status: "confirmed",
+    status: "pending",
     cancellationToken,
     createdAt: new Date().toISOString(),
     sendConfirmationEmail: Boolean(payload.sendConfirmationEmail),
@@ -137,7 +150,11 @@ export function getAllBookings() {
 }
 
 export function findBookingForCancellation(id: string, tokenOrEmail: string) {
-  const booking = bookings.get(id);
+  const booking =
+    bookings.get(id) ??
+    Array.from(bookings.values()).find(
+      (storedBooking) => storedBooking.bookingNumber.toLowerCase() === id.trim().toLowerCase(),
+    );
 
   if (!booking) {
     throw new Error("Diese Buchung wurde nicht gefunden.");
@@ -164,7 +181,7 @@ export function cancelBooking(id: string, tokenOrEmail: string) {
     cancelledAt: new Date().toISOString(),
   };
 
-  bookings.set(id, cancelledBooking);
+  bookings.set(booking.id, cancelledBooking);
 
   // TODO: Notify Silvia about the cancellation by email and remove/cancel the
   // matching Google Calendar/CalDAV event after calendar sync is configured.
@@ -176,7 +193,8 @@ export function cancelBooking(id: string, tokenOrEmail: string) {
 
 export function buildSalonNotification(booking: StoredBooking) {
   return [
-    `Neue Terminanfrage: ${booking.id}`,
+    `Neue Terminanfrage: ${booking.bookingNumber}`,
+    `Status: ${bookingStatusLabels[booking.status]}`,
     `Name: ${booking.customerFirstName} ${booking.customerLastName}`,
     `Telefon: ${booking.customerPhone}`,
     `E-Mail: ${booking.customerEmail}`,
@@ -191,7 +209,7 @@ export function buildSalonNotification(booking: StoredBooking) {
 
 export function buildCancellationNotification(booking: StoredBooking) {
   return [
-    `Stornierung: ${booking.id}`,
+    `Stornierung: ${booking.bookingNumber}`,
     `Name: ${booking.customerFirstName} ${booking.customerLastName}`,
     `Termin: ${booking.date}, ${booking.startTime}-${booking.endTime}`,
     `Leistung: ${booking.serviceName}`,
@@ -200,7 +218,8 @@ export function buildCancellationNotification(booking: StoredBooking) {
 
 export function buildBookingWhatsAppHref(booking: StoredBooking) {
   const message = [
-    `Hallo Silvia, ich möchte diesen Termin buchen:`,
+    `Hallo Silvia, ich möchte diesen Termin anfragen:`,
+    `Buchung: ${booking.bookingNumber}`,
     `${booking.serviceName}`,
     `${booking.date}, ${booking.startTime}-${booking.endTime}`,
     `Preis: CHF ${booking.priceCHF}`,
@@ -219,7 +238,7 @@ export function buildBookingWhatsAppHref(booking: StoredBooking) {
 export function buildCancellationWhatsAppHref(booking: StoredBooking) {
   const message = [
     `Hallo Silvia, ich möchte meinen Termin stornieren:`,
-    `Buchung: ${booking.id}`,
+    `Buchung: ${booking.bookingNumber}`,
     `${booking.serviceName}`,
     `${booking.date}, ${booking.startTime}-${booking.endTime}`,
     `Name: ${booking.customerFirstName} ${booking.customerLastName}`,

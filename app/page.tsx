@@ -58,15 +58,22 @@ export default function HomePage() {
               Dein persönlicher Coiffeur in Emmenbrücke
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-ivory/84 sm:text-xl">
-              Warm, persönlich und zuverlässig: Silvia Perez Perez begleitet
-              dich mit Beratung, Schnitt, Farbe und Styling an der
-              Benziwilstrasse 4a.
+              Persönliche Beratung, sauberes Handwerk und ein Look, der zu
+              deinem Alltag passt. Für Damen, Herren und Kinder in Luzern /
+              Emmenbrücke.
             </p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
               <BookingLink className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-sand px-6 text-sm font-semibold text-cocoa shadow-[0_16px_36px_rgba(0,0,0,0.22)]" />
               <WhatsAppLink className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-ivory/24 bg-ivory/10 px-6 text-sm font-semibold text-ivory backdrop-blur">
                 WhatsApp schreiben
               </WhatsAppLink>
+              <a
+                className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-ivory/24 bg-ivory/10 px-6 text-sm font-semibold text-ivory backdrop-blur transition hover:bg-ivory/18"
+                href={`tel:${siteConfig.mobileHref}`}
+              >
+                <Phone aria-hidden="true" className="size-4" />
+                Anrufen
+              </a>
             </div>
             <div className="mt-8 flex flex-wrap gap-3 text-sm text-ivory/78">
               <span className="inline-flex items-center gap-2 rounded-full bg-ivory/10 px-4 py-2 backdrop-blur">
@@ -76,6 +83,10 @@ export default function HomePage() {
               <span className="inline-flex items-center gap-2 rounded-full bg-ivory/10 px-4 py-2 backdrop-blur">
                 <CalendarDays aria-hidden="true" className="size-4 text-sand" />
                 Benziwilstrasse 4a, Emmenbrücke
+              </span>
+              <span className="inline-flex items-center gap-2 rounded-full bg-ivory/10 px-4 py-2 backdrop-blur">
+                <Clock aria-hidden="true" className="size-4 text-sand" />
+                Mo-Fr 07:00-19:00
               </span>
             </div>
           </Reveal>

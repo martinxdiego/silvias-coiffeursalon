@@ -107,6 +107,46 @@ export function ContactSection() {
               </span>
             </div>
           </div>
+
+          <div className="rounded-[2rem] border border-cocoa/10 bg-cream p-6 shadow-[0_18px_50px_rgba(45,33,27,0.08)]">
+            <h3 className="font-serif text-2xl text-cocoa">Anreise & Vertrauen</h3>
+            <div className="mt-5 grid gap-3 text-sm leading-7 text-coffee">
+              <p>
+                TODO: Parkplatz- und ÖV-Hinweise ergänzen, sobald die finalen
+                Informationen von Silvia vorliegen.
+              </p>
+              {siteConfig.googleMapsUrl ? (
+                <a
+                  className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-cocoa/15 bg-white px-5 font-semibold text-cocoa"
+                  href={siteConfig.googleMapsUrl}
+                >
+                  Google Maps öffnen
+                  <ExternalLink aria-hidden="true" className="size-4" />
+                </a>
+              ) : (
+                <span className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-cocoa/15 bg-white px-5 font-semibold text-mocha">
+                  Google Maps Link TODO
+                </span>
+              )}
+              {siteConfig.googleBusinessUrl ? (
+                <a
+                  className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-cocoa/15 bg-white px-5 font-semibold text-cocoa"
+                  href={siteConfig.googleBusinessUrl}
+                >
+                  Bewertung auf Google schreiben
+                  <ExternalLink aria-hidden="true" className="size-4" />
+                </a>
+              ) : (
+                <span className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-cocoa/15 bg-white px-5 font-semibold text-mocha">
+                  Google Bewertung TODO
+                </span>
+              )}
+              <p className="text-xs text-mocha">
+                TODO: Google Business Profil Link und Maps Link einsetzen, sobald
+                das Profil verfügbar ist.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </section>

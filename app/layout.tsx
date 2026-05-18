@@ -23,6 +23,7 @@ const localBusinessJsonLd = {
   telephone: siteConfig.mobileDisplay,
   email: siteConfig.email,
   priceRange: "CHF",
+  sameAs: siteConfig.googleBusinessUrl ? [siteConfig.googleBusinessUrl] : [],
   address: {
     "@type": "PostalAddress",
     streetAddress: siteConfig.address.street,

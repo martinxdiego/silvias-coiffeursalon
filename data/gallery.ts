@@ -1,9 +1,20 @@
+export type GalleryCategory = "Farbe" | "Schnitt" | "Styling" | "Salon" | "Pflege";
+
 export type GalleryImage = {
   src: string;
   alt: string;
   title: string;
-  category: string;
+  category: GalleryCategory;
 };
+
+export const galleryCategories: Array<"Alle" | GalleryCategory> = [
+  "Alle",
+  "Farbe",
+  "Schnitt",
+  "Styling",
+  "Salon",
+  "Pflege",
+];
 
 // TODO: Replace placeholder images with real salon photos and finished customer work.
 export const galleryImages: GalleryImage[] = [

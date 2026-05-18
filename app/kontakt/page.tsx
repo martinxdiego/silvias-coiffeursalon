@@ -15,7 +15,7 @@ export default function KontaktPage() {
       <section className="bg-cream py-20 sm:py-24">
         <div className="mx-auto grid max-w-7xl gap-10 px-4 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:px-8">
           <SectionHeader
-            description="Für schnelle Termine ist Online buchen oder WhatsApp am einfachsten. Das Kontaktformular ist als UI vorbereitet und kann später mit E-Mail-Versand verbunden werden."
+            description="Für schnelle Termine ist Online buchen oder WhatsApp am einfachsten. Das Kontaktformular ist als UI vorbereitet und zeigt schon klare Validierung."
             eyebrow="Kontakt"
             title="Frage stellen oder Terminwunsch senden."
           />

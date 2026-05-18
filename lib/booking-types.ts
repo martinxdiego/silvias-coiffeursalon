@@ -8,7 +8,7 @@ export type PaymentMethod =
 
 export type PaymentStatus = "pending" | "on_site_open" | "arrangement_open";
 
-export type BookingStatus = "confirmed" | "cancelled";
+export type BookingStatus = "pending" | "confirmed" | "cancelled";
 
 export type BookingRequest = {
   serviceId: string;
@@ -26,6 +26,7 @@ export type BookingRequest = {
 
 export type StoredBooking = {
   id: string;
+  bookingNumber: string;
   serviceId: string;
   serviceName: string;
   category: ServiceCategory;
@@ -61,6 +62,12 @@ export const paymentMethodLabels: Record<PaymentMethod, string> = {
   twint_on_site: "TWINT vor Ort",
   twint_after_confirmation: "TWINT nach Bestätigung",
   later_arrangement: "Zahlung später nach Absprache",
+};
+
+export const bookingStatusLabels: Record<BookingStatus, string> = {
+  pending: "Anfrage erhalten",
+  confirmed: "Bestätigt",
+  cancelled: "Storniert",
 };
 
 export function getPaymentStatus(method: PaymentMethod): PaymentStatus {

@@ -12,11 +12,12 @@ import {
   Scissors,
   UserRound,
 } from "lucide-react";
+import Link from "next/link";
 import { useMemo, useState } from "react";
 import { formatBookingDate, getBookableDays, getTimeSlotsForDate } from "@/lib/availability";
 import { downloadIcs } from "@/lib/calendar";
 import {
-  getPaymentStatusLabel,
+  bookingStatusLabels,
   paymentMethodLabels,
   type BookingRequest,
   type BookingResponse,
@@ -93,6 +94,10 @@ function isValidEmail(email: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
+function isValidPhone(phone: string) {
+  return /^[+0-9][0-9\s()./-]{6,}$/.test(phone.trim());
+}
+
 export function BookingWizard({ initialServiceId }: BookingWizardProps) {
   const validInitialService = initialServiceId && activeServices.some((service) => service.id === initialServiceId)
     ? initialServiceId
@@ -139,6 +144,7 @@ export function BookingWizard({ initialServiceId }: BookingWizardProps) {
         details.customerFirstName &&
           details.customerLastName &&
           details.customerPhone &&
+          isValidPhone(details.customerPhone) &&
           details.customerEmail &&
           isValidEmail(details.customerEmail) &&
           details.privacyAccepted,
@@ -150,7 +156,7 @@ export function BookingWizard({ initialServiceId }: BookingWizardProps) {
   function nextStep() {
     setError("");
     if (!canContinue()) {
-      setError("Bitte fülle die benötigten Angaben für diesen Schritt aus.");
+      setError(getStepError(step));
       return;
     }
     setStep((current) => Math.min(current + 1, 5));
@@ -213,16 +219,16 @@ export function BookingWizard({ initialServiceId }: BookingWizardProps) {
             <Check aria-hidden="true" className="size-7" />
           </div>
           <h1 className="mt-6 font-serif text-4xl leading-tight text-cocoa sm:text-5xl">
-            Vielen Dank, dein Termin wurde erfasst.
+            Vielen Dank, deine Terminanfrage wurde erfasst.
           </h1>
           <p className="mt-4 max-w-2xl leading-8 text-coffee">
-            Die Buchung ist als Prototyp gespeichert. Für die Live-Version wird
-            die E-Mail-Benachrichtigung an Silvia und die Kundenbestätigung
-            angebunden. Nutze jetzt zusätzlich WhatsApp als sichere Bestätigung.
+            Silvia erhält die Termindetails über die vorbereitete Benachrichtigung.
+            Falls etwas angepasst werden muss, meldet sie sich direkt bei dir.
+            Nutze WhatsApp zusätzlich als zuverlässigen Fallback.
           </p>
 
           <BookingSummary
-            bookingId={booking.id}
+            bookingId={booking.bookingNumber}
             date={booking.date}
             endTime={booking.endTime}
             paymentMethod={booking.paymentMethod}
@@ -230,7 +236,7 @@ export function BookingWizard({ initialServiceId }: BookingWizardProps) {
             category={booking.category}
             serviceName={booking.serviceName}
             startTime={booking.startTime}
-            status={getPaymentStatusLabel(booking.paymentStatus)}
+            status={bookingStatusLabels[booking.status]}
             customer={`${booking.customerFirstName} ${booking.customerLastName}`}
             phone={booking.customerPhone}
             email={booking.customerEmail}
@@ -247,7 +253,7 @@ export function BookingWizard({ initialServiceId }: BookingWizardProps) {
             <button
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full bg-cocoa px-5 text-sm font-semibold text-ivory"
               onClick={() =>
-                downloadIcs(`silvias-coiffeursalon-${booking.id}.ics`, bookingResponse.calendar)
+                downloadIcs(`silvias-coiffeursalon-${booking.bookingNumber}.ics`, bookingResponse.calendar)
               }
               type="button"
             >
@@ -269,18 +275,20 @@ export function BookingWizard({ initialServiceId }: BookingWizardProps) {
             >
               Termin stornieren
             </a>
-            <a
+            <Link
               className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-cocoa/15 bg-white px-5 text-sm font-semibold text-cocoa"
               href="/"
             >
               Zur Startseite
-            </a>
+            </Link>
           </div>
 
           <p className="mt-6 rounded-3xl bg-cream p-4 text-sm leading-7 text-coffee">
             Bitte melde dich frühzeitig, falls du den Termin nicht wahrnehmen
-            kannst. Mit der Buchungsnummer {booking.id} kannst du den Termin
-            später stornieren.
+            kannst. Mit der Buchungsnummer {booking.bookingNumber} kannst du den Termin
+            später stornieren. Falls du deinen Termin nicht wahrnehmen kannst,
+            storniere ihn bitte so früh wie möglich oder melde dich direkt per
+            WhatsApp bei Silvia.
           </p>
         </div>
       </section>
@@ -365,7 +373,7 @@ export function BookingWizard({ initialServiceId }: BookingWizardProps) {
                 onClick={submitBooking}
                 type="button"
               >
-                {submitting ? "Wird gespeichert..." : "Termin buchen"}
+                {submitting ? "Wird gespeichert..." : "Terminanfrage senden"}
               </button>
             )}
           </div>
@@ -411,7 +419,7 @@ export function BookingWizard({ initialServiceId }: BookingWizardProps) {
               onClick={submitBooking}
               type="button"
             >
-              Buchen
+              Anfrage senden
             </button>
           )}
         </div>
@@ -597,7 +605,7 @@ function DetailsStep({
       <StepTitle
         eyebrow="Schritt 3"
         title="Wie kann Silvia dich erreichen?"
-        text="Nur die wichtigsten Angaben, damit der Termin bestätigt oder bei Rückfragen geklärt werden kann."
+        text="Nur die wichtigsten Angaben, damit Silvia deine Anfrage bestätigen oder bei Rückfragen kurz reagieren kann."
       />
       <div className="mt-8 grid gap-4 sm:grid-cols-2">
         <TextField
@@ -724,7 +732,7 @@ function ReviewStep({
       <StepTitle
         eyebrow="Schritt 5"
         title="Bitte prüfe deine Anfrage."
-        text="Wenn alles stimmt, wird der Termin erfasst. Danach kannst du ihn direkt in deinen Kalender speichern."
+        text="Wenn alles stimmt, wird deine Anfrage erfasst. Danach kannst du den Termin als vorläufigen Eintrag in deinen Kalender speichern."
       />
       <BookingSummary
         customer={`${details.customerFirstName} ${details.customerLastName}`}
@@ -741,8 +749,9 @@ function ReviewStep({
         durationMinutes={selectedService.durationMinutes}
       />
       <p className="mt-5 rounded-3xl bg-sand/25 p-4 text-sm leading-7 text-coffee">
-        Nach der Buchung erhält Silvia alle Termindetails. Du kannst den Termin
-        anschliessend in deinem Kalender speichern.
+        Nach der Buchung erhält Silvia alle Termindetails. Deine Anfrage gilt
+        als erfasst; Silvia meldet sich, falls Uhrzeit oder Leistung angepasst
+        werden müssen.
       </p>
       {paymentMethod === "twint_after_confirmation" ? (
         <p className="mt-5 rounded-3xl bg-sand/25 p-4 text-sm leading-7 text-coffee">
@@ -785,7 +794,8 @@ function SelectedSummary({
       </dl>
       <p className="mt-6 rounded-3xl bg-ivory/10 p-4 text-sm leading-6 text-ivory/76">
         Was passiert danach? Du erhältst eine Zusammenfassung, eine Kalenderdatei
-        und eine WhatsApp-Vorlage an Silvia.
+        und eine WhatsApp-Vorlage. Silvia meldet sich, falls etwas angepasst
+        werden muss.
       </p>
     </div>
   );
@@ -825,7 +835,7 @@ function BookingSummary({
   return (
     <div className="mt-8 rounded-[1.75rem] border border-cocoa/10 bg-cream p-5">
       <dl className="grid gap-4 sm:grid-cols-2">
-        {bookingId ? <SummaryRow label="Buchung" value={bookingId} /> : null}
+        {bookingId ? <SummaryRow label="Buchungsnummer" value={bookingId} /> : null}
         <SummaryRow label="Leistung" value={serviceName} />
         {category ? <SummaryRow label="Kategorie" value={category} /> : null}
         <SummaryRow label="Preis" value={formatPrice(priceCHF)} />
@@ -901,4 +911,16 @@ function TextField({
       />
     </label>
   );
+}
+
+function getStepError(step: number) {
+  if (step === 2) {
+    return "Bitte wähle ein Datum und eine freie Uhrzeit aus.";
+  }
+
+  if (step === 3) {
+    return "Bitte gib Vorname, Nachname, eine gültige Telefonnummer, eine gültige E-Mail-Adresse ein und akzeptiere den Datenschutz.";
+  }
+
+  return "Bitte fülle die benötigten Angaben für diesen Schritt aus.";
 }

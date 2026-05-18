@@ -2,6 +2,8 @@
 
 Premium, mobile-first Next.js website for Silvias Coiffeursalon in Emmenbrücke.
 
+Production preview: `https://silvias-coiffeursalon.vercel.app`
+
 ## Run locally
 
 ```bash
@@ -28,7 +30,7 @@ Main salon data lives in:
 - `data/gallery.ts` for gallery images
 - `data/testimonials.ts` for reviews
 
-The current Google Business link, external booking link, real images, testimonials, specializations and personal text are marked with TODO comments.
+The current Google Business link, Google Maps link, external booking link, real images, testimonials, specializations, legal text and personal story are marked with TODO comments.
 
 ## Add real images
 
@@ -55,6 +57,8 @@ It currently supports:
 Services, prices and durations are edited in `data/services.ts`.
 
 The current booking storage is an in-memory prototype in `lib/booking-store.ts`. It is useful for testing the UX, but it is not persistent and must be replaced before production. Bookings disappear when the dev server restarts.
+
+New bookings are currently stored as `pending` / "Anfrage erhalten". This avoids overpromising until real persistence, email notification and calendar sync are connected.
 
 Booking architecture:
 
@@ -83,6 +87,8 @@ Production database options:
 - PostgreSQL with Prisma
 - MongoDB
 - Firebase
+
+Recommended for this project: Supabase. It gives a small salon project Postgres persistence, dashboard access, row-level security and a simple upgrade path without introducing much backend complexity.
 
 ## Email sending
 

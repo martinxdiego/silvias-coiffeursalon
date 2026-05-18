@@ -22,22 +22,29 @@ export const siteConfig = {
     "Hallo Silvia, ich möchte gerne einen Termin in Silvias Coiffeursalon vereinbaren.",
   bookingPath: "/online-buchen",
   cancellationPath: "/termin-stornieren",
-  // TODO: Replace with the real production domain before launch.
-  url: "https://www.silvias-coiffeursalon.ch",
+  url: "https://silvias-coiffeursalon.vercel.app",
   // TODO: Add the real Google Business profile URL when available.
   googleBusinessUrl: "",
+  // TODO: Replace with the real Google Maps embed/share URL after the Google Business profile is claimed.
+  googleMapsUrl: "",
   // TODO: Add an external booking URL only if a separate booking provider is used later.
   externalBookingUrl: "",
+  legalLinks: [
+    { label: "Impressum", href: "/impressum" },
+    { label: "Datenschutz", href: "/datenschutz" },
+    { label: "Buchungsbedingungen", href: "/buchungsbedingungen" },
+  ],
   mapLabel: "Google Maps Standort von Silvias Coiffeursalon",
   description:
-    "Persönlicher Coiffeur in Emmenbrücke bei Luzern. Damen, Herren, Kinder, Schneiden, Föhnen, Färben und Beratung bei Silvias Coiffeursalon.",
+    "Persönlicher Coiffeur in Emmenbrücke für Damen, Herren und Kinder. Schneiden, Föhnen, Färben, Balayage und Beratung bei Silvias Coiffeursalon.",
   keywords: [
     "Coiffeur Emmenbrücke",
     "Coiffeur Luzern",
     "Damen Coiffeur Emmenbrücke",
     "Herren Coiffeur Emmenbrücke",
     "Haare schneiden Emmenbrücke",
-    "Färben Luzern",
+    "Haare färben Luzern",
+    "Balayage Emmenbrücke",
     "Silvias Coiffeursalon",
   ],
   openingHours: [
@@ -79,7 +86,7 @@ export const baseMetadata: Metadata = {
     template: `%s | ${siteConfig.name}`,
   },
   description:
-    "Persönlicher Coiffeur in Emmenbrücke. Damen, Herren, Kinder, Schneiden, Föhnen, Färben und Beratung. Jetzt Termin bei Silvias Coiffeursalon buchen.",
+    "Persönlicher Coiffeur in Emmenbrücke für Damen, Herren und Kinder. Schneiden, Föhnen, Färben, Balayage und Beratung bei Silvias Coiffeursalon.",
   keywords: siteConfig.keywords,
   openGraph: {
     title: "Silvias Coiffeursalon | Coiffeur in Emmenbrücke & Luzern",

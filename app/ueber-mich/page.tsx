@@ -31,17 +31,19 @@ export default function UeberMichPage() {
               eyebrow="Über Silvia"
               title="Ein Coiffeurtermin soll sich persönlich und unkompliziert anfühlen."
             />
-            {/* TODO: Replace this placeholder with Silvia's final biography, training, specializations and story. */}
+            {/* TODO: Replace this with Silvia's real personal story. Add biography, training, specializations and local salon history. */}
             <div className="mt-8 space-y-5 text-base leading-8 text-coffee">
               <p>
-                Der Salon richtet sich an Menschen aus Emmenbrücke, Luzern und
-                Umgebung, die einen verlässlichen Coiffeur mit persönlicher
-                Atmosphäre suchen.
+                Silvias Coiffeursalon ist ein ruhiger, persönlicher Ort für
+                Menschen aus Emmenbrücke, Luzern und Umgebung, die nicht einfach
+                nur schnell Haare schneiden möchten, sondern eine ehrliche
+                Empfehlung und ein gepflegtes Ergebnis suchen.
               </p>
               <p>
-                Ob Schnitt, Farbe, Föhnen oder Kinderhaarschnitt: Silvia nimmt
-                sich Zeit für ein klares Gespräch und ein Ergebnis, das zu dir
-                und deinem Alltag passt.
+                Ob Schnitt, Farbe, Föhnen oder Kinderhaarschnitt: Silvia hört
+                zuerst zu, erklärt die Möglichkeiten verständlich und achtet
+                darauf, dass der Look zu Haarstruktur, Alltag und Pflegeaufwand
+                passt.
               </p>
             </div>
           </div>
@@ -52,16 +54,16 @@ export default function UeberMichPage() {
         <div className="mx-auto grid max-w-7xl gap-5 px-4 sm:px-6 md:grid-cols-3 lg:px-8">
           {[
             {
-              title: "Persönlich",
-              text: "Ein Termin, eine klare Ansprechpartnerin und genug Zeit für deine Fragen.",
+              title: "Beratung zuerst",
+              text: "Silvia nimmt sich Zeit für deine Wünsche und sagt ehrlich, was zu deinem Haar passt.",
             },
             {
-              title: "Nahbar",
-              text: "Direkte Buchung, WhatsApp-Fallback und transparente Preise.",
+              title: "Lokal verwurzelt",
+              text: "Ein persönlicher Coiffeur in Emmenbrücke, gut erreichbar für Kundinnen und Kunden aus Luzern.",
             },
             {
-              title: "Verlässlich",
-              text: "Saubere Arbeit, faire Beratung und Öffnungszeiten für den Alltag.",
+              title: "Alltagstauglich",
+              text: "Schnitt, Farbe und Styling sollen nicht nur im Salon gut aussehen, sondern auch danach funktionieren.",
             },
           ].map((item) => (
             <article

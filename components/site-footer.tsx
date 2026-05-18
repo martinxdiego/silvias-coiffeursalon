@@ -57,8 +57,15 @@ export function SiteFooter() {
               {siteConfig.email}
             </a>
           </address>
-          <p className="mt-5 text-xs leading-6 text-ivory/52">
-            Rechtliches: Impressum und Datenschutz werden vor dem Launch ergänzt.
+          <nav className="mt-5 flex flex-wrap gap-3 text-xs text-ivory/62" aria-label="Rechtliches">
+            {siteConfig.legalLinks.map((link) => (
+              <Link className="hover:text-ivory" href={link.href} key={link.href}>
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+          <p className="mt-3 text-xs leading-6 text-ivory/52">
+            TODO: Rechtstexte vor dem Livegang final durch Diego/Silvia prüfen lassen.
           </p>
         </div>
       </div>

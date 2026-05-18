@@ -22,9 +22,9 @@ export default async function OnlineBuchenPage({
       <section className="bg-cream pt-16 sm:pt-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeader
-            description={`Wähle deine Leistung, suche dir eine passende Zeit und sende die Anfrage an ${siteConfig.ownerName}. Für den Prototyp bleiben E-Mail, TWINT und Kalender-Sync als klare Integrationspunkte vorbereitet.`}
+            description={`Wähle deine Leistung, suche dir eine passende Zeit und sende die Anfrage an ${siteConfig.ownerName}. Du siehst Preis, Dauer und nächste Schritte jederzeit klar im Überblick.`}
             eyebrow="Online buchen"
-            title="Dein Termin bei Silvias Coiffeursalon."
+            title="Deine Terminanfrage bei Silvias Coiffeursalon."
           />
         </div>
       </section>
