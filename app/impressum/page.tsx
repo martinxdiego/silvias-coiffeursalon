@@ -31,8 +31,11 @@ export default function ImpressumPage() {
                 {line}
               </span>
             ))}
+            <span className="block">Schweiz</span>
             <br />
             Telefon: {siteConfig.mobileDisplay}
+            <br />
+            Festnetz: {siteConfig.landlineDisplay}
             <br />
             E-Mail: {siteConfig.email}
           </address>

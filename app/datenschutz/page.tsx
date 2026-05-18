@@ -17,15 +17,41 @@ export default function DatenschutzPage() {
         </h1>
         <div className="mt-6 space-y-4 leading-8 text-coffee">
           <p>
-            TODO: Finalen Datenschutztext für die Schweiz ergänzen, bevor echte
-            Kundendaten über Formular, Buchung, E-Mail, Datenbank oder Analyse
-            verarbeitet werden.
+            TODO: Datenschutztext vor Go-live rechtlich prüfen. Diese Seite ist
+            ein strukturierter Platzhalter und ersetzt keine finale rechtliche
+            Prüfung.
           </p>
-          <p>
-            Aktuell ist die Online-Buchung als Prototyp vorbereitet. Für die
-            Produktion müssen Datenbank, E-Mail-Versand, Aufbewahrung und
-            Löschung klar dokumentiert werden.
-          </p>
+          {[
+            {
+              title: "Kontaktformular",
+              text: "Das Kontaktformular ist aktuell als UI vorbereitet. Vor echtem Versand muss dokumentiert werden, welche Angaben gespeichert oder per E-Mail weitergeleitet werden.",
+            },
+            {
+              title: "Buchungsformular",
+              text: "Die Online-Buchung erfasst Name, Telefon, E-Mail, Leistung, Terminwunsch, Zahlungsart und optionale Notizen. Ohne echte Datenbank werden diese Daten nur im laufenden Prototyp gehalten.",
+            },
+            {
+              title: "E-Mail-Kommunikation",
+              text: "Für spätere Bestätigungen ist eine Notification-Struktur vorbereitet. Sobald ein Provider wie Resend genutzt wird, müssen Absender, Empfänger, Aufbewahrung und Inhalte final beschrieben werden.",
+            },
+            {
+              title: "WhatsApp-Kommunikation",
+              text: "WhatsApp-Buttons öffnen eine vorgefüllte Nachricht. Beim Versand gelten zusätzlich die Datenschutzbedingungen von WhatsApp/Meta.",
+            },
+            {
+              title: "Hosting",
+              text: "Die Website wird aktuell über Vercel bereitgestellt. Vor Go-live sollten Hosting, Serverstandort und Log-Verarbeitung final geprüft werden.",
+            },
+            {
+              title: "Cookies und Analytics",
+              text: "Aktuell ist keine Analytics- oder Tracking-Integration vorgesehen. Falls später Analytics genutzt wird, muss diese Datenschutzerklärung erweitert werden.",
+            },
+          ].map((section) => (
+            <section className="rounded-3xl bg-cream p-5" key={section.title}>
+              <h2 className="font-serif text-2xl text-cocoa">{section.title}</h2>
+              <p className="mt-2">{section.text}</p>
+            </section>
+          ))}
         </div>
       </section>
     </main>

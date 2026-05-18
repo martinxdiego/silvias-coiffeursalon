@@ -32,6 +32,14 @@ function minutesFromTime(time: string) {
   return hours * 60 + minutes;
 }
 
+function bookingStartDate(booking: StoredBooking) {
+  return new Date(`${booking.date}T${booking.startTime}:00`);
+}
+
+function hoursUntilBooking(booking: StoredBooking) {
+  return (bookingStartDate(booking).getTime() - Date.now()) / (1000 * 60 * 60);
+}
+
 function isPlausiblePhone(phone: string) {
   return /^[+0-9][0-9\s()./-]{6,}$/.test(phone.trim());
 }
@@ -174,6 +182,16 @@ export function findBookingForCancellation(id: string, tokenOrEmail: string) {
 
 export function cancelBooking(id: string, tokenOrEmail: string) {
   const booking = findBookingForCancellation(id, tokenOrEmail);
+
+  if (booking.status === "cancelled") {
+    throw new Error("Diese Terminanfrage wurde bereits storniert.");
+  }
+
+  if (hoursUntilBooking(booking) < 24) {
+    throw new Error(
+      "Eine Online-Stornierung ist bis 24 Stunden vor dem Termin möglich. Bitte kontaktiere Silvia kurzfristig direkt per WhatsApp oder Telefon.",
+    );
+  }
 
   const cancelledBooking: StoredBooking = {
     ...booking,

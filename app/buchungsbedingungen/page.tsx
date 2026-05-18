@@ -17,13 +17,18 @@ export default function BuchungsbedingungenPage() {
         </h1>
         <div className="mt-6 space-y-4 leading-8 text-coffee">
           <p>
-            TODO: Finale Buchungsbedingungen, Stornofristen und allfällige
-            Gebühren mit Silvia festlegen.
+            Kunden können ihren Termin bis 24 Stunden vor dem Termin kostenlos
+            stornieren. Bei kurzfristigen Änderungen oder Absagen bitten wir um
+            direkte Kontaktaufnahme per WhatsApp oder Telefon.
           </p>
           <p>
-            Empfohlene Kundenformulierung: Falls du deinen Termin nicht
-            wahrnehmen kannst, storniere ihn bitte so früh wie möglich oder
-            melde dich direkt per WhatsApp bei Silvia.
+            Neue Online-Buchungen gelten aktuell als Terminanfrage. Deine
+            Terminanfrage wurde erfasst. Silvia meldet sich bei dir, falls etwas
+            angepasst werden muss.
+          </p>
+          <p>
+            TODO: Finale Buchungsbedingungen, Stornofristen und allfällige
+            Gebühren vor Go-live mit Silvia prüfen.
           </p>
         </div>
       </section>

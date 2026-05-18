@@ -43,8 +43,9 @@ export function buildSalonCancellationNotification(booking: StoredBooking) {
 
 export async function notifySalonAboutBooking(booking: StoredBooking) {
   // TODO: If RESEND_API_KEY or SMTP credentials are configured, send this to
-  // silviadeverin@gmail.com with the ICS attachment. Keep SDK clients lazily
-  // initialized so next build does not require secrets.
+  // ADMIN_NOTIFICATION_EMAIL=silviadeverin@gmail.com from FROM_EMAIL with the
+  // ICS attachment. Keep SDK clients lazily initialized so next build does not
+  // require secrets.
   console.info("Salon booking email placeholder", buildSalonBookingNotification(booking));
 }
 
@@ -54,7 +55,8 @@ export async function notifyCustomerAboutBooking(booking: StoredBooking) {
   }
 
   // TODO: Send customer confirmation email with booking summary, cancellation
-  // link, and ICS attachment when a transactional email provider is configured.
+  // link, and ICS attachment when RESEND_API_KEY/FROM_EMAIL or another
+  // transactional email provider is configured.
   console.info("Customer confirmation email placeholder", buildCustomerConfirmationNotification(booking));
 }
 

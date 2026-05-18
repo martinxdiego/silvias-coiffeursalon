@@ -23,10 +23,16 @@ export const siteConfig = {
   bookingPath: "/online-buchen",
   cancellationPath: "/termin-stornieren",
   url: "https://silvias-coiffeursalon.vercel.app",
+  domainPlaceholder: "silvias-coiffeursalon.ch",
+  ownerIntro:
+    "Silvia Perez Perez ist die Inhaberin von Silvias Coiffeursalon in Emmenbrücke. Ihr Ziel ist es, dass sich jede Kundin und jeder Kunde persönlich beraten, wohl und verstanden fühlt. Im Mittelpunkt stehen ehrliches Handwerk, eine ruhige Atmosphäre und Frisuren, die zum Menschen und zum Alltag passen.",
   // TODO: Add the real Google Business profile URL when available.
-  googleBusinessUrl: "",
+  googleBusinessUrl: "TODO_GOOGLE_BUSINESS_PROFILE_LINK",
   // TODO: Replace with the real Google Maps embed/share URL after the Google Business profile is claimed.
-  googleMapsUrl: "",
+  googleMapsUrl:
+    "https://www.google.com/maps/search/?api=1&query=Benziwilstrasse%204a%2C%206020%20Emmenbr%C3%BCcke%2C%20Schweiz",
+  // TODO: Finalen Google Maps Embed Link nach Erstellung/Verifizierung des Google Business Profils ersetzen.
+  googleMapsEmbedUrl: "TODO_GOOGLE_MAPS_EMBED_LINK",
   // TODO: Add an external booking URL only if a separate booking provider is used later.
   externalBookingUrl: "",
   legalLinks: [

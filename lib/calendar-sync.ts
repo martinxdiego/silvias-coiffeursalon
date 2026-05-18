@@ -3,7 +3,7 @@ import type { StoredBooking } from "@/lib/booking-types";
 export async function createSalonCalendarEvent(_booking: StoredBooking) {
   void _booking;
   // TODO: Integrate Google Calendar API or CalDAV later. Required inputs:
-  // Silvia's calendar account, OAuth/API credentials, calendar ID, and a
+  // SILVIA_GOOGLE_CALENDAR_ACCOUNT, OAuth/API credentials, calendar ID, and a
   // production database field for the external calendar event ID.
   return null;
 }

@@ -95,9 +95,10 @@ export function CancellationForm({
           Dein Termin wurde storniert.
         </h2>
         <p className="mt-4 leading-8 text-coffee">
-          Die Stornierung ist im Prototyp gespeichert. Nutze WhatsApp als
-          zuverlässige Rückmeldung an Silvia, bis die echte E-Mail- und
-          Kalender-Integration aktiv ist.
+          Die Stornierung wurde im laufenden Prototyp gespeichert. Definitiv
+          zuverlässig wird sie erst, sobald echte Datenbank, Speicherung und
+          Benachrichtigung aktiv sind. Nutze WhatsApp zusätzlich als direkte
+          Rückmeldung an Silvia.
         </p>
 
         <dl className="mt-8 grid gap-4 rounded-[1.75rem] bg-cream p-5 sm:grid-cols-2">
@@ -152,6 +153,11 @@ export function CancellationForm({
         Gib deine Buchungsnummer und deine E-Mail-Adresse oder den Stornocode
         aus dem Link ein. Ohne echte Datenbank funktioniert dies aktuell nur
         innerhalb des laufenden Prototyps.
+      </p>
+      <p className="mt-4 rounded-3xl bg-cream p-4 text-sm leading-7 text-coffee">
+        Kunden können ihren Termin bis 24 Stunden vor dem Termin kostenlos
+        stornieren. Bei kurzfristigen Änderungen oder Absagen bitte direkt per
+        WhatsApp oder Telefon melden.
       </p>
 
       <div className="mt-8 grid gap-4 sm:grid-cols-2">

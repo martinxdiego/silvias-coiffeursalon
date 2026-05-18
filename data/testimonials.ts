@@ -7,21 +7,23 @@ export type Testimonial = {
 // TODO: Replace with real customer reviews from Silvias Coiffeursalon.
 export const testimonials: Testimonial[] = [
   {
-    quote:
-      "Silvia nimmt sich Zeit, hört gut zu und der Schnitt sitzt auch nach Wochen noch schön.",
-    name: "Kundin aus Emmenbrücke",
-    detail: "Damenhaarschnitt",
+    quote: "Sehr freundliche Beratung und ein wunderschönes Ergebnis.",
+    name: "Platzhalterbewertung 1",
+    detail: "TODO: Später durch echte Google-Bewertung ersetzen",
   },
   {
-    quote:
-      "Sehr unkompliziert, freundlich und zuverlässig. Ich komme gerne wieder.",
-    name: "Kunde aus Luzern",
-    detail: "Herrenhaarschnitt",
+    quote: "Ich habe mich sofort wohlgefühlt.",
+    name: "Platzhalterbewertung 2",
+    detail: "TODO: Später durch echte Kundenbewertung ersetzen",
   },
   {
-    quote:
-      "Die Farbe wirkt natürlich und gepflegt. Genau so habe ich es mir vorgestellt.",
-    name: "Stammkundin",
-    detail: "Farbe & Föhnen",
+    quote: "Sehr sauber, persönlich und professionell.",
+    name: "Platzhalterbewertung 3",
+    detail: "TODO: Später durch echte Google-Bewertung ersetzen",
+  },
+  {
+    quote: "Der Termin war ruhig, unkompliziert und sehr angenehm.",
+    name: "Platzhalterbewertung 4",
+    detail: "TODO: Später durch echte Kundenbewertung ersetzen",
   },
 ];

@@ -136,6 +136,9 @@ export default function HomePage() {
               </Reveal>
             ))}
           </div>
+          <p className="mt-6 rounded-3xl bg-cream p-5 text-sm leading-7 text-coffee">
+            Alle Preise sind Richtpreise und können je nach Haarlänge, Aufwand und Beratung leicht variieren.
+          </p>
         </div>
       </section>
 
@@ -152,7 +155,7 @@ export default function HomePage() {
           </Reveal>
           <Reveal className="flex flex-col justify-center" delay={0.08}>
             <SectionHeader
-              description="Silvia Perez Perez führt ihren Salon persönlich und nahbar. Der Fokus liegt auf ehrlicher Beratung, sauberem Handwerk und einem Ergebnis, das in deinen Alltag passt."
+              description={siteConfig.ownerIntro}
               eyebrow="Über Silvia"
               title="Ein persönlicher Salon mit ruhiger Handschrift."
             />
@@ -208,7 +211,7 @@ export default function HomePage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <SectionHeader
             align="center"
-            description="Bis echte Google- oder Kundenbewertungen eingefügt werden, zeigen diese Platzhalter die gewünschte Tonalität."
+            description="Diese Bewertungen sind Platzhalter und werden später durch echte Google-Bewertungen ersetzt."
             eyebrow="Stimmen"
             title="Persönlich, freundlich und zuverlässig."
           />

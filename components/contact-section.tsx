@@ -101,6 +101,10 @@ export function ContactSection() {
               <span className="mt-4 max-w-56 text-sm font-semibold text-cocoa">
                 Google Maps Platzhalter - Benziwilstrasse 4a, Emmenbrücke
               </span>
+              <span className="mt-2 max-w-64 text-xs leading-5 text-coffee">
+                TODO: Finalen Google Maps Embed Link nach Erstellung/Verifizierung
+                des Google Business Profils ersetzen.
+              </span>
               <span className="mt-2 inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-[0.16em] text-gold">
                 Google Business TODO
                 <ExternalLink aria-hidden="true" className="size-3" />
@@ -115,20 +119,33 @@ export function ContactSection() {
                 TODO: Parkplatz- und ÖV-Hinweise ergänzen, sobald die finalen
                 Informationen von Silvia vorliegen.
               </p>
-              {siteConfig.googleMapsUrl ? (
+              {siteConfig.googleMapsUrl.startsWith("https://") ? (
                 <a
                   className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-cocoa/15 bg-white px-5 font-semibold text-cocoa"
                   href={siteConfig.googleMapsUrl}
                 >
-                  Google Maps öffnen
+                  Route öffnen
                   <ExternalLink aria-hidden="true" className="size-4" />
                 </a>
               ) : (
                 <span className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-cocoa/15 bg-white px-5 font-semibold text-mocha">
-                  Google Maps Link TODO
+                  Route öffnen TODO
                 </span>
               )}
-              {siteConfig.googleBusinessUrl ? (
+              {siteConfig.googleBusinessUrl.startsWith("https://") ? (
+                <a
+                  className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-cocoa/15 bg-white px-5 font-semibold text-cocoa"
+                  href={siteConfig.googleBusinessUrl}
+                >
+                  Auf Google ansehen
+                  <ExternalLink aria-hidden="true" className="size-4" />
+                </a>
+              ) : (
+                <span className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-cocoa/15 bg-white px-5 font-semibold text-mocha">
+                  Auf Google ansehen TODO
+                </span>
+              )}
+              {siteConfig.googleBusinessUrl.startsWith("https://") ? (
                 <a
                   className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-cocoa/15 bg-white px-5 font-semibold text-cocoa"
                   href={siteConfig.googleBusinessUrl}
@@ -143,7 +160,8 @@ export function ContactSection() {
               )}
               <p className="text-xs text-mocha">
                 TODO: Google Business Profil Link und Maps Link einsetzen, sobald
-                das Profil verfügbar ist.
+                das Profil verfügbar ist. Aktueller Google Business Placeholder:
+                {" "}{siteConfig.googleBusinessUrl}.
               </p>
             </div>
           </div>

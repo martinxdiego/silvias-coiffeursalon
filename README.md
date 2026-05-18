@@ -4,6 +4,8 @@ Premium, mobile-first Next.js website for Silvias Coiffeursalon in Emmenbrücke.
 
 Production preview: `https://silvias-coiffeursalon.vercel.app`
 
+Future domain placeholder: `silvias-coiffeursalon.ch`
+
 ## Run locally
 
 ```bash
@@ -30,13 +32,25 @@ Main salon data lives in:
 - `data/gallery.ts` for gallery images
 - `data/testimonials.ts` for reviews
 
-The current Google Business link, Google Maps link, external booking link, real images, testimonials, specializations, legal text and personal story are marked with TODO comments.
+The current Google Business link, Google Maps embed link, external booking link, real images, testimonials, specializations, legal text and final personal story are marked with TODO comments.
 
 ## Add real images
 
 Replace the placeholder SVG files in `public/images` with real salon photos or finished work.
 
 Keep the same filenames if you do not want to edit the data files. Otherwise update the `image` or `src` fields in `data/services.ts` and `data/gallery.ts`.
+
+Needed real image set:
+
+- Aussenansicht Salon
+- Innenbereich
+- Arbeitsplatz / Spiegel
+- Silvia Portrait
+- Vorher/Nachher Haare
+- Farbe / Balayage
+- Damenhaarschnitt
+- Herrenhaarschnitt
+- Detailbild Schere/Föhn/Produkte
 
 ## Buchungssystem
 
@@ -60,6 +74,12 @@ The current booking storage is an in-memory prototype in `lib/booking-store.ts`.
 
 New bookings are currently stored as `pending` / "Anfrage erhalten". This avoids overpromising until real persistence, email notification and calendar sync are connected.
 
+Current cancellation rule:
+
+- customers can cancel free of charge until 24 hours before the appointment
+- short-notice changes or cancellations should happen directly by WhatsApp or phone
+- cancellation state is only prototype-safe until persistent storage and notification are connected
+
 Booking architecture:
 
 - `components/booking-wizard.tsx` handles the customer booking flow
@@ -79,6 +99,8 @@ Payment methods shown today:
 - TWINT nach Bestätigung
 - Zahlung später nach Absprache
 
+No real online payment is triggered. Only the selected payment method is stored.
+
 The admin page at `/admin/bookings` is a preparation route only. Add authentication and role protection before using it with real customer data.
 
 Production database options:
@@ -89,6 +111,30 @@ Production database options:
 - Firebase
 
 Recommended for this project: Supabase. It gives a small salon project Postgres persistence, dashboard access, row-level security and a simple upgrade path without introducing much backend complexity.
+
+## Environment variables later
+
+No environment variables are required for the current prototype deployment.
+
+Prepared future variables:
+
+```bash
+RESEND_API_KEY=
+FROM_EMAIL=
+ADMIN_NOTIFICATION_EMAIL=silviadeverin@gmail.com
+DATABASE_URL=
+NEXT_PUBLIC_SITE_URL=https://silvias-coiffeursalon.vercel.app
+SILVIA_GOOGLE_CALENDAR_ACCOUNT=
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+GOOGLE_CALENDAR_ID=
+TWINT_PROVIDER_API_KEY=
+```
+
+Google placeholders:
+
+- `TODO_GOOGLE_BUSINESS_PROFILE_LINK`
+- `TODO_GOOGLE_MAPS_EMBED_LINK`
 
 ## Email sending
 
@@ -106,11 +152,11 @@ Before launch, configure real sending for salon notifications to `silviadeverin@
 
 ## TWINT integration
 
-The booking flow includes a TWINT payment placeholder only. Real TWINT payment requires a provider/API, for example:
+The booking flow includes a TWINT payment placeholder only. Real TWINT online payment requires a configured Swiss provider/API, for example:
 
+- Payrexx
 - Datatrans
 - Worldline
-- Payrexx
 - another Swiss payment provider
 - a Stripe-compatible workaround if appropriate
 

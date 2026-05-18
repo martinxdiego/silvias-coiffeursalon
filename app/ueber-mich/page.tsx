@@ -27,17 +27,16 @@ export default function UeberMichPage() {
           </div>
           <div className="flex flex-col justify-center">
             <SectionHeader
-              description="Silvia Perez Perez ist die persönliche Ansprechpartnerin im Salon. Sie legt Wert auf ruhige Beratung, ehrliche Empfehlungen und Resultate, die auch im Alltag funktionieren."
+              description={siteConfig.ownerIntro}
               eyebrow="Über Silvia"
               title="Ein Coiffeurtermin soll sich persönlich und unkompliziert anfühlen."
             />
             {/* TODO: Replace this with Silvia's real personal story. Add biography, training, specializations and local salon history. */}
             <div className="mt-8 space-y-5 text-base leading-8 text-coffee">
               <p>
-                Silvias Coiffeursalon ist ein ruhiger, persönlicher Ort für
-                Menschen aus Emmenbrücke, Luzern und Umgebung, die nicht einfach
-                nur schnell Haare schneiden möchten, sondern eine ehrliche
-                Empfehlung und ein gepflegtes Ergebnis suchen.
+                Silvias Coiffeursalon ist ein ruhiger, persönlicher Ort in
+                Emmenbrücke für Menschen aus Luzern und Umgebung, die eine
+                ehrliche Empfehlung und ein gepflegtes Ergebnis suchen.
               </p>
               <p>
                 Ob Schnitt, Farbe, Föhnen oder Kinderhaarschnitt: Silvia hört

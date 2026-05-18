@@ -19,7 +19,7 @@ export default async function TerminStornierenPage({
     <main className="bg-cream">
       <section className="mx-auto grid max-w-7xl gap-10 px-4 py-16 sm:px-6 sm:py-20 lg:grid-cols-[0.85fr_1.15fr] lg:px-8">
         <SectionHeader
-          description="Falls etwas dazwischenkommt, kannst du den Termin einfach stornieren. Silvia erhält später automatisch eine Benachrichtigung, sobald die echte E-Mail-Integration aktiv ist."
+          description="Kunden können ihren Termin bis 24 Stunden vor dem Termin kostenlos stornieren. Bei kurzfristigen Änderungen oder Absagen bitten wir um direkte Kontaktaufnahme per WhatsApp oder Telefon."
           eyebrow="Stornierung"
           title="Ein Termin soll fair planbar bleiben."
         />

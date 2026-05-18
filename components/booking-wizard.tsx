@@ -27,6 +27,7 @@ import {
   activeServices,
   formatDuration,
   formatPrice,
+  priceNote,
   serviceCategories,
   type Service,
 } from "@/data/services";
@@ -222,9 +223,10 @@ export function BookingWizard({ initialServiceId }: BookingWizardProps) {
             Vielen Dank, deine Terminanfrage wurde erfasst.
           </h1>
           <p className="mt-4 max-w-2xl leading-8 text-coffee">
-            Silvia erhält die Termindetails über die vorbereitete Benachrichtigung.
-            Falls etwas angepasst werden muss, meldet sie sich direkt bei dir.
-            Nutze WhatsApp zusätzlich als zuverlässigen Fallback.
+            Deine Terminanfrage wurde erfasst. Silvia meldet sich bei dir,
+            falls etwas angepasst werden muss. Nutze WhatsApp zusätzlich als
+            zuverlässigen Fallback, bis echte E-Mail-Benachrichtigungen aktiv
+            sind.
           </p>
 
           <BookingSummary
@@ -467,6 +469,9 @@ function ServiceStep({
         title="Welche Leistung möchtest du buchen?"
         text="Wähle eine Leistung. Preis und Dauer bleiben während der Buchung sichtbar."
       />
+      <p className="mt-5 rounded-3xl bg-cream p-4 text-sm leading-7 text-coffee">
+        {priceNote}
+      </p>
       <div className="mt-8 grid gap-6">
         {serviceCategories.map((category) => (
           <div key={category}>
@@ -681,12 +686,11 @@ function PaymentStep({
       <StepTitle
         eyebrow="Schritt 4"
         title="Wie möchtest du bezahlen?"
-        text="Online-Zahlung per TWINT wird vorbereitet. Aktuell kann die Bezahlung vor Ort oder nach Absprache erfolgen."
+        text="Online-Zahlung wird vorbereitet. Aktuell kannst du vor Ort bar, per TWINT oder nach Absprache bezahlen."
       />
-      {/* TODO: Real TWINT payments require a Swiss provider such as Datatrans,
-      Worldline, Payrexx, a Stripe-compatible workaround or another Swiss
-      payment provider. Do not collect payment here until credentials and
-      contracts are configured. */}
+      {/* TODO: Real TWINT online payment requires a Swiss payment provider such
+      as Payrexx, Datatrans, Worldline or another configured provider. Do not
+      collect payment here until credentials and contracts are configured. */}
       <div className="mt-8 grid gap-3">
         {paymentOptions.map((option) => {
           const selected = paymentMethod === option.id;
@@ -796,6 +800,9 @@ function SelectedSummary({
         Was passiert danach? Du erhältst eine Zusammenfassung, eine Kalenderdatei
         und eine WhatsApp-Vorlage. Silvia meldet sich, falls etwas angepasst
         werden muss.
+      </p>
+      <p className="mt-4 rounded-3xl bg-ivory/10 p-4 text-sm leading-6 text-ivory/76">
+        {priceNote}
       </p>
     </div>
   );
